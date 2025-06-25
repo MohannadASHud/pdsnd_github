@@ -27,14 +27,11 @@ CITY_DATA = {
 
 
 chicago_df = pd.read_csv('chicago.csv')
-chicago_df.info()
+
 
 
 # In[6]:
 
-
-print("Chicago Data:")
-print(chicago_df.head(), '\n')
 
 
 # ### Import Data from New York
@@ -43,14 +40,13 @@ print(chicago_df.head(), '\n')
 
 
 new_york_df = pd.read_csv('new_york_city.csv')
-new_york_df.info()
+
 
 
 # In[9]:
 
 
-print("New York City Data:")
-print(new_york_df.head(), '\n')
+
 
 
 # ### Import Data from  Washington
@@ -59,14 +55,13 @@ print(new_york_df.head(), '\n')
 
 
 washington_df = pd.read_csv('washington.csv')
-washington_df.info()
+
 
 
 # In[12]:
 
 
-print("Washington Data:")
-print(washington_df.head())
+
 
 
 # ## 2. Conversions and Extractions 
@@ -103,13 +98,13 @@ new_york_df[['Start Time', 'month', 'day_of_week', 'hour']].head()
 
 def popular_times(df, city_name):
     print(f"\n--- Popular Times of Travel in {city_name} ---")
-    
+
     most_common_month = df['month'].mode()[0]
     print(f"Most Common Month: {most_common_month}")
-    
+
     most_common_day = df['day_of_week'].mode()[0]
     print(f"Most Common Day of Week: {most_common_day}")
-    
+
     most_common_hour = df['hour'].mode()[0]
     print(f"Most Common Start Hour: {most_common_hour}")
 
@@ -117,14 +112,12 @@ def popular_times(df, city_name):
 # In[20]:
 
 
-popular_times(chicago_df, 'Chicago')
-popular_times(new_york_df, 'New York City')
 
 
 # ## 3. Adding Filters
 # ### 3.1 Creating City, Month & Day of The Week Filters
 
-# In[86]:
+# In[22]:
 
 
 def get_filters():
@@ -134,10 +127,10 @@ def get_filters():
         (str) city, month, day
     """
     print("Hello! Let's explore some US bikeshare data!")
-  
+
     # City input
     while True:
-        city = input("Would you like to see data for Chicago, New York City, or Washington? (type 'exit' to quit): ").strip().lower()
+        city = input("enter city (Chicago, New York City, Washington) (type 'exit' to quit): ").strip().lower()
         if city == 'exit':
             print("Exiting program. Goodbye!")
             exit()  # Ends the program
@@ -199,45 +192,7 @@ def load_data(city, month, day):
     return df
 
 
-# ### 3.3 Testing the Filters
-# #### 3.3.1 Test 1
 
-# In[26]:
-
-
-city = 'washington'
-month = 'april'
-day = 'tuesday'
-
-df = load_data(city, month, day)
-df.head()
-
-
-# In[27]:
-
-
-print(df['month'].unique())
-print(df['day_of_week'].unique())
-
-
-# #### 3.3.2 Test 2
-
-# In[29]:
-
-
-city = 'chicago'
-month = 'january'
-day = 'saturday'
-
-df = load_data(city, month, day)
-df.head()
-
-
-# In[30]:
-
-
-print(df['month'].unique())
-print(df['day_of_week'].unique())
 
 
 # ## 4. Calculating Most Common 
@@ -264,7 +219,7 @@ def time_stats(df):
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
-time_stats(df)
+
 
 
 # ### 4.2 Most Common Station
@@ -292,7 +247,6 @@ def station_stats(df):
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
-station_stats(df)
 
 
 # ### 4.3 Most Common Trip Duration
@@ -315,7 +269,7 @@ def trip_duration_stats(df):
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
-trip_duration_stats(df)
+
 
 
 # ### 4.4 Most Common User Stats
@@ -351,7 +305,7 @@ def user_stats(df):
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
-user_stats(df)
+
 
 
 # ## 5. Display Raw Data
@@ -391,9 +345,6 @@ def main():
 # In[42]:
 
 
-df = load_data('washington', 'april', 'tuesday')
-display_raw_data(df)
-
 
 # ## 6. Answering Interesting Questions
 # ### 6.1 What percentage of trips are round trips?
@@ -405,14 +356,14 @@ def round_trip_stats(df):
     total_trips = len(df)
     round_trips = df[df['Start Station'] == df['End Station']]
     round_trip_count = len(round_trips)
-    
+
     if total_trips > 0:
         percent = round_trip_count / total_trips * 100
         print(f"{round_trip_count} out of {total_trips} trips ({percent:.2f}%) are round trips.")
     else:
         print("No data available to compute round trip statistics.")
 
-round_trip_stats(df)
+
 
 
 # ### 6.2 Which day and hour combo has the highest number of rides?
@@ -429,7 +380,7 @@ def busiest_day_hour_combo(df):
     print(f"  {busiest['day_of_week'].title()} at {busiest['hour']}:00")
     print(f"  Total rides: {busiest['trip_count']}")
 
-busiest_day_hour_combo(df)
+
 
 
 # In[47]:
@@ -454,7 +405,7 @@ def plot_day_hour_heatmap(df, city_name=''):
 
     plt.tight_layout()
     plt.show()
-plot_day_hour_heatmap(df, city_name='washington')
+
 
 
 # In[48]:
