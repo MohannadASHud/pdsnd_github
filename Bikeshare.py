@@ -4,34 +4,14 @@ import time
 
 
 
+import pandas as pd
+
+# Global dictionary for city CSV file names
 CITY_DATA = {
     'chicago': 'chicago.csv',
     'new york city': 'new_york_city.csv',
-    'washington': 'washington.csv'}
-
-
-chicago_df = pd.read_csv('chicago.csv')
-
-new_york_df = pd.read_csv('new_york_city.csv')
-
-washington_df = pd.read_csv('washington.csv')
-
-
-
-chicago_df['Start Time'] = pd.to_datetime(chicago_df['Start Time'])
-new_york_df['Start Time'] = pd.to_datetime(new_york_df['Start Time'])
-
-
-
-for df in [chicago_df, new_york_df]:
-    df['month'] = df['Start Time'].dt.month
-    df['day_of_week'] = df['Start Time'].dt.day_name()
-    df['hour'] = df['Start Time'].dt.hour
-
-
-
-new_york_df[['Start Time', 'month', 'day_of_week', 'hour']].head()
-
+    'washington': 'washington.csv'
+}
 
 
 def popular_times(df, city_name):
