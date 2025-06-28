@@ -1,17 +1,7 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# # Project: Explore US Bikeshare Data
-
-# In[2]:
-
-
 import pandas as pd
 import numpy as np
 import time
 
-
-# In[3]:
 
 
 CITY_DATA = {
@@ -20,63 +10,17 @@ CITY_DATA = {
     'washington': 'washington.csv'}
 
 
-# ## 1. Importing Data
-# ### Import Data from Chicago 
-
-# In[5]:
-
-
 chicago_df = pd.read_csv('chicago.csv')
 
-
-
-# In[6]:
-
-
-
-# ### Import Data from New York
-
-# In[8]:
-
-
 new_york_df = pd.read_csv('new_york_city.csv')
-
-
-
-# In[9]:
-
-
-
-
-
-# ### Import Data from  Washington
-
-# In[11]:
-
 
 washington_df = pd.read_csv('washington.csv')
 
 
 
-# In[12]:
-
-
-
-
-
-# ## 2. Conversions and Extractions 
-# ### 2.1 Convert Start Time to datetime format
-
-# In[14]:
-
-
 chicago_df['Start Time'] = pd.to_datetime(chicago_df['Start Time'])
 new_york_df['Start Time'] = pd.to_datetime(new_york_df['Start Time'])
 
-
-# ### 2.2 Extracting features from Start Time
-
-# In[16]:
 
 
 for df in [chicago_df, new_york_df]:
@@ -85,15 +29,9 @@ for df in [chicago_df, new_york_df]:
     df['hour'] = df['Start Time'].dt.hour
 
 
-# In[17]:
-
 
 new_york_df[['Start Time', 'month', 'day_of_week', 'hour']].head()
 
-
-# ### 2.3 Most Common Time Stats
-
-# In[19]:
 
 
 def popular_times(df, city_name):
@@ -109,15 +47,7 @@ def popular_times(df, city_name):
     print(f"Most Common Start Hour: {most_common_hour}")
 
 
-# In[20]:
 
-
-
-
-# ## 3. Adding Filters
-# ### 3.1 Creating City, Month & Day of The Week Filters
-
-# In[22]:
 
 
 def get_filters():
@@ -165,9 +95,6 @@ def get_filters():
     return city, month, day
 
 
-# ### 3.2 Loading Data
-
-# In[24]:
 
 
 def load_data(city, month, day):
@@ -194,13 +121,6 @@ def load_data(city, month, day):
 
 
 
-
-# ## 4. Calculating Most Common 
-# ### 4.1 Most Common Time
-
-# In[32]:
-
-
 def time_stats(df):
     """Displays statistics on the most frequent times of travel."""
 
@@ -220,11 +140,6 @@ def time_stats(df):
     print('-'*40)
 
 
-
-
-# ### 4.2 Most Common Station
-
-# In[34]:
 
 
 def station_stats(df):
@@ -249,10 +164,6 @@ def station_stats(df):
 
 
 
-# ### 4.3 Most Common Trip Duration
-
-# In[36]:
-
 
 def trip_duration_stats(df):
     """Displays statistics on the total and average trip duration."""
@@ -270,11 +181,6 @@ def trip_duration_stats(df):
     print('-'*40)
 
 
-
-
-# ### 4.4 Most Common User Stats
-
-# In[38]:
 
 
 def user_stats(df):
@@ -308,11 +214,6 @@ def user_stats(df):
 
 
 
-# ## 5. Display Raw Data
-
-# In[40]:
-
-
 def display_raw_data(df):
     """Displays 5 rows of raw data upon user request."""
     start_loc = 0
@@ -327,8 +228,6 @@ def display_raw_data(df):
             break
 
 
-# In[41]:
-
 
 def main():
     while True:
@@ -342,14 +241,6 @@ def main():
             break
 
 
-# In[42]:
-
-
-
-# ## 6. Answering Interesting Questions
-# ### 6.1 What percentage of trips are round trips?
-
-# In[44]:
 
 
 def round_trip_stats(df):
@@ -366,9 +257,6 @@ def round_trip_stats(df):
 
 
 
-# ### 6.2 Which day and hour combo has the highest number of rides?
-
-# In[46]:
 
 
 def busiest_day_hour_combo(df):
@@ -382,8 +270,6 @@ def busiest_day_hour_combo(df):
 
 
 
-
-# In[47]:
 
 
 import seaborn as sns
@@ -408,8 +294,6 @@ def plot_day_hour_heatmap(df, city_name=''):
 
 
 
-# In[48]:
-
 
 def main():
     while True:
@@ -428,14 +312,6 @@ def main():
             break
 
 
-# In[49]:
 
 
 main()
-
-
-# In[ ]:
-
-
-
-
